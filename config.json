@@ -1,0 +1,16 @@
+{
+  "self": "okx_chinese",
+  "rival": "binance.zh",
+  "target_date": "2027-04-30",
+  "gap_reduction_target": 0.30,
+  "reference": {
+    "label": "OKX 去年半年平均",
+    "daily_growth": 22
+  },
+  "baseline": {
+    "date": "2026-11-04",
+    "self_followers": 37000,
+    "rival_followers": 80000,
+    "note": "起点为 2026-11-04 手动记录的约数；第一次自动采集后可改成当天的精确数字"
+  }
+}

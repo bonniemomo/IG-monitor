@@ -52,6 +52,12 @@
   tr.me td { font-weight: 600; }
   td a { color: inherit; }
   .cap { max-width: 320px; overflow: hidden; text-overflow: ellipsis; color: var(--muted); }
+  .head-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  #chase .head-row { justify-content: flex-start; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button { font: inherit; font-size: 13px; padding: 4px 12px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button.on { background: var(--fg); color: var(--bg); }
   .empty { color: var(--muted); font-size: 14px; padding: 24px 0; text-align: center; }
   svg text { fill: var(--muted); font-size: 12px; }
   @media (max-width: 640px) { .opt { display: none; } h1 { font-size: 22px; } .tile .val { font-size: 22px; } }
@@ -65,22 +71,25 @@
     <div class="meta" id="meta"></div>
   </header>
 
-  <section class="card" id="chase">
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h2>追赶币安</h2><span id="chase-status"></span></div>
-    <p class="sub" id="chase-sub"></p>
-    <div class="tiles" id="chase-tiles"></div>
-  </section>
-
-  <section class="card">
-    <h2>粉丝差距走势</h2>
-    <p class="sub">黑线是每天的实际差距，虚线是按目标需要走的路径。黑线在虚线下方，说明进度领先。</p>
-    <div class="chart" id="gap-chart"></div>
-  </section>
-
   <section class="card">
     <h2>竞品对比</h2>
     <p class="sub">最新一次采集。日均净增按最近 14 天计算；互动率 =（点赞 + 评论）÷ 粉丝数，取近 30 天帖子的平均。</p>
     <div class="tablewrap"><table id="cmp"></table></div>
+  </section>
+
+  <section class="card">
+    <div class="head-row">
+      <h2>各平台粉丝增速</h2>
+      <div class="seg" id="growth-range" role="group" aria-label="时间范围">
+        <button type="button" data-days="7">近 7 天</button>
+        <button type="button" data-days="30" class="on">近 30 天</button>
+        <button type="button" data-days="90">近 90 天</button>
+        <button type="button" data-days="0">全部</button>
+      </div>
+    </div>
+    <p class="sub">以所选时间段第一天为起点，各账号粉丝累计增长了百分之几。用百分比比较，大号小号放在同一把尺子上看谁涨得快。</p>
+    <div class="legend" id="growth-legend"></div>
+    <div class="chart" id="growth-chart"></div>
   </section>
 
   <div class="grid2">
@@ -106,6 +115,12 @@
     <h2>爆款帖子 Top 15</h2>
     <p class="sub">近 30 天所有账号里互动率最高的帖子，点链接可打开原帖。</p>
     <div class="tablewrap"><table id="top"></table></div>
+  </section>
+
+  <section class="card" id="chase">
+    <div class="head-row"><h2>追赶币安</h2><span id="chase-status"></span></div>
+    <p class="sub" id="chase-sub"></p>
+    <div class="tiles" id="chase-tiles"></div>
   </section>
 
   <section class="card">
